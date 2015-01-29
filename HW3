@@ -1,0 +1,31 @@
+#Draws two cards from a 52 card deck, and checks to see if they are the heart suit.
+SuitCheck = function(n){
+  Results = sapply(1:n,function(i){
+    DeckValues = rep(c("H","S","C","D"),each = 13)
+    Draw = sample(DeckValues,2,replace = FALSE)
+    return(Draw[1] == "H" & Draw[2] == "H")
+  })
+  Prob = sum(Results)/length(Results)
+  return(Prob)
+}
+
+#Draws two cards from a 52 card deck, and checks to see if they are the same value.
+PairCheck = function(n){
+  Results = sapply(1:n,function(i){
+    CardValue = rep(c("A",2:10,"J","Q","K"),times = 4)
+    Draw = sample(CardValue,2,replace = FALSE)
+    return(Draw[1] == Draw[2])
+  })
+  Prob = sum(Results)/length(Results)
+  return(Prob)
+}
+
+# Draws two cards checks if they are a "D" or "H"
+SuitCheck = function(n){
+Suit = rep(c("H","S","C","D"),each = 13)
+Value = rep(c("A",2:10,"J","Q","K"),times = 4)
+Deck = cbind(Suit,Value)
+Results = sapply(1:n,function(i){
+Draw = sample(1:52,1,replace = FALSE)
+return(Deck[Draw,])
+})
